@@ -21,4 +21,4 @@ jobs:
         npm install --save-dev jest  # Ensures Jest is installed
 
     - name: Run Jest tests
-      run: npm test  # Runs Jest test cases
+      run: CI=true npm test  # Runs Jest test cases
