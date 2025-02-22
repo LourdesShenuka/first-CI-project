@@ -1,22 +1,27 @@
 name: Run Jest Tests
 
-on: [push, pull_request]  # Runs on every push or pull request
+on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Uses the latest Ubuntu environment
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3  # Checks out the repository code
+      uses: actions/checkout@v3
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '22'  # Set the Node.js version (change if needed)
+        node-version: '22'
 
     - name: Install dependencies
-      run: npm install  # Installs all required packages
+      run: |
+        npm ci
+        npm install --save-dev jest
+
+    - name: Fix Jest Permissions
+      run: chmod +x node_modules/.bin/jest
 
     - name: Run Jest tests
-      run: npm test  # Runs Jest test cases
+      run: CI=true npx jest
