@@ -16,9 +16,7 @@ jobs:
         node-version: '22'  # Set the Node.js version (change if needed)
 
     - name: Install dependencies
-      run: |
-        npm install  # Installs all required packages
-        npm install --save-dev jest  # Ensures Jest is installed
+      run: npm install  # Installs all required packages
 
     - name: Run Jest tests
-      run: CI=true npm test  # Runs Jest test cases
+      run: npm test  # Runs Jest test cases
